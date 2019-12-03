@@ -32,21 +32,14 @@ def steps_of(point):
 
 
 def move(grid, wire, key):
-    x, y, count = 0, 0, 0
+    current, count = [0, 0], 0
     for instruction in wire:
         direction, steps = instruction[0], int(instruction[1:])
-        if direction in 'UD':
-            factor = (1, -1)['UD'.index(direction)]
-            for _ in range(steps):
-                x += factor
-                count += 1
-                add(grid, x, y, count, key)
-        else:
-            factor = (1, -1)['RL'.index(direction)]
-            for _ in range(steps):
-                y += factor
-                count += 1
-                add(grid, x, y, count, key)
+        factor = (1, -1, 1, -1)['UDRL'.index(direction)]
+        for _ in range(steps):
+            current[direction in 'UD'] += factor
+            count += 1
+            add(grid, *current, count, key)
 
 
 def try_with(data):
