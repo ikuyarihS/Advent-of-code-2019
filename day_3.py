@@ -57,8 +57,11 @@ def try_with(data):
 
     intersections = tuple(p for p in grid.values() if len(p.steps) > 1)
 
-    print('Part 1:', distance(min(intersections, key=distance)),
-          '| Part 2:', steps_of(min(intersections, key=steps_of)))
+    print(
+        f"Intersections: {len(intersections):,} | "
+        f"Part 1: {distance(min(intersections, key=distance)):,} | "
+        f"Part 2: {steps_of(min(intersections, key=steps_of)):,}"
+    )
 
 
 for data in cases:
